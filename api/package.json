@@ -1,0 +1,22 @@
+{
+	"scripts": {
+		"dev": "bun run --hot src/index.ts",
+		"generate": "drizzle-kit generate:pg",
+		"push": "drizzle-kit push:pg",
+		"drop": "drizzle-kit drop up:pg",
+		"studio": "drizzle-kit studio"
+	},
+	"dependencies": {
+		"bcrypt": "^5.1.1",
+		"drizzle-orm": "^0.30.7",
+		"hono": "^4.2.2",
+		"pg": "^8.11.5"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.6.4",
+		"@types/bcrypt": "^5.0.2",
+		"@types/bun": "latest",
+		"@types/pg": "^8.11.4",
+		"drizzle-kit": "^0.20.14"
+	}
+}
