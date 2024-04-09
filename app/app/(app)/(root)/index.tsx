@@ -1,6 +1,6 @@
+import { Text, View } from "@/components/Themed";
 import { useSession } from "@/context/AuthContext";
 import React from "react";
-import { Text, View } from "react-native";
 
 export default function Index() {
 	const { signOut } = useSession();

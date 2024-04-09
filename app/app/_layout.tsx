@@ -1,3 +1,4 @@
+import "@/app/global.css";
 import { SessionProvider } from "@/context/AuthContext";
 import {
 	DarkTheme,
