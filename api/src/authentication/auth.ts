@@ -58,11 +58,11 @@ auth.post("/register", async (c) => {
 auth.post("/login", async (c) => {
 	const body = await c.req.formData();
 
-	const email = body.get("email") as string;
+	const username = body.get("username") as string;
 	const password = body.get("password") as string;
 	try {
 		const usr = await db.query.user.findFirst({
-			where: eq(user.email, email),
+			where: eq(user.username, username),
 		});
 
 		if (!usr) {
@@ -84,7 +84,10 @@ auth.post("/login", async (c) => {
 		);
 
 		return c.json({ ...usr, token }, { status: 200 });
-	} catch (error) {}
+	} catch (error) {
+		console.log(error);
+		c.json({ message: "unavailable" });
+	}
 });
 
 export { auth };
