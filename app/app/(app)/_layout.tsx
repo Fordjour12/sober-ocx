@@ -25,8 +25,13 @@ export default function AppLayout() {
 	}
 
 	return (
-		<Stack>
+		<Stack
+			screenOptions={{
+				headerShown: false,
+			}}
+		>
 			<Stack.Screen name="(root)" />
+			<Stack.Screen name="auth" />
 			<Stack.Screen
 				name="sign-in"
 				options={{

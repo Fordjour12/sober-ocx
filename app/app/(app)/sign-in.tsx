@@ -1,13 +1,18 @@
-import { Text, View } from "@/components/Themed";
+//import { Text, View } from "@/components/Themed";
 import { useSession } from "@/context/AuthContext";
+import { router } from "expo-router";
 import React, { useState } from "react";
 import {
+	Image,
 	Keyboard,
 	KeyboardAvoidingView,
 	Platform,
 	TextInput,
 	TouchableOpacity,
 	TouchableWithoutFeedback,
+	View,
+	Text,
+	ImageBackground
 } from "react-native";
 
 export default function SignIn() {
@@ -22,18 +27,33 @@ export default function SignIn() {
 		try {
 			const res = await signIn({ username, password });
 			console.log(res);
+			router.replace("/");
 		} catch (error) {
 			console.error(error);
 		}
 	};
 
+	const GoBackHandler = () => {
+		router.back()
+		console.log("Can go back")
+	}
+
+	const SignInImageBackground = require("../../assets/images/pexels-vlad-chețan-2923156.jpg")
+
 	return (
+		<ImageBackground source={SignInImageBackground} resizeMode="cover" className="flex-1" />
+
+	)
+}
+
+
+
+{/*
 		<KeyboardAvoidingView
 			behavior={Platform.OS === "ios" ? "padding" : "height"}
 		>
-			<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-				{/* NOTE: use better alternative to fix this margin thing */}
-				<View className="mt-40">
+			<TouchableWithoutFeedback onPress={Keyboard.dismiss}> /*}
+				{/*	<View className="mt-40">
 					<View className="py-4">
 						<Text>Username:</Text>
 						<TextInput
@@ -70,8 +90,12 @@ export default function SignIn() {
 							<Text>Sign Up</Text>
 						</TouchableWithoutFeedback>
 					</View>
-				</View>
+				</View> */}
+{/*
 			</TouchableWithoutFeedback>
-		</KeyboardAvoidingView>
-	);
-}
+			<TouchableOpacity onPress={GoBackHandler}>
+				<Text>Back </Text>
+			</TouchableOpacity>
+			
+	</KeyboardAvoidingView >
+*/}

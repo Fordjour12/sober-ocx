@@ -57,6 +57,9 @@ export function SessionProvider(props: PropsWithChildren) {
 
 			const { data } = response;
 
+			// NOTE: Validate the session
+			setSession(data.token);
+
 			return data;
 		} catch (error) {
 			console.error(error);
