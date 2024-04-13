@@ -1,12 +1,11 @@
 import { CustomButton } from "@/components/customCmp/Button";
 import { router } from "expo-router";
 import React from "react";
-import { Image, View, Text, } from "react-native";
-
-
+import { Image, View, Text, ImageBackground, } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function AuthScreen() {
-	const soberStart = require("../../assets/images/jill-rects.png");
+	const startBgImage = require("../../assets/images/jill-rects.png");
 
 	const signInRedirect = () => {
 		router.push("/sign-in")
@@ -15,17 +14,25 @@ export default function AuthScreen() {
 	}
 
 	return (
-		<View className="flex-1 w-screen relative">
-			<Image source={soberStart} resizeMode="cover" />
-			<View className="absolute mt-10 flex-1">
-				<Text className="text-6xl items-center text-yellow-400/60 text-center w-screen">
-					Sober
-				</Text>
-				<View>
-					<CustomButton onPress={signInRedirect} Text={"Continue with Email"} />
+		<ImageBackground source={startBgImage} resizeMode="contain" className="flex-1 w-full" >
+			<SafeAreaView>
+				<View className="mt-[23%]">
+					<Text className="text-5xl text-purple-500 font-extrabold text-center w-full">
+						Sober
+					</Text>
 				</View>
-			</View>
-		</View>
+
+
+				<View className="mt-[38rem]">
+					<CustomButton
+						className="bg-purple-500"
+						onPress={signInRedirect}
+						Text={"Continue with Email"}
+					/>
+				</View>
+			</SafeAreaView>
+		</ImageBackground>
+
 	);
 }
 
