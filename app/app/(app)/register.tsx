@@ -3,34 +3,35 @@ import { useSession } from "@/context/AuthContext";
 import { router } from "expo-router";
 import React, { useState } from "react";
 import {
+	SafeAreaView,
 	StyleSheet,
 	TextInput,
 	TouchableOpacity,
 	TouchableWithoutFeedback,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function SignIn() {
-	const { signIn } = useSession();
+export default function Register() {
+	const { register } = useSession();
 
 	const [username, setUsername] = useState<string>("");
+	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 
-	const handleSignIn = async () => {
+	const handleRegisterAccount = async () => {
 		try {
-			const res = await signIn({ username, password });
+			const res = await register({ username, email, password });
 			console.log(res);
-			router.replace("/");
 		} catch (error) {
 			console.error(error);
 		}
 	};
 
-	const signUpRedirect = () => {
-		router.push("/register");
+	const signInRedirect = () => {
+		router.push("/sign-in");
 		console.log("Pressed");
 	};
-	// const SignInImageBackground = require("../../assets/images/pexels-vlad-chețan-2923156.jpg");
+
+	// const registerImageBackground = require("../../assets/images/registerImage.jpg");
 
 	return (
 		<SafeAreaView className="flex-1">
@@ -43,6 +44,16 @@ export default function SignIn() {
 						className="text-white"
 					/>
 				</View>
+
+				<View className="my-4 border border-yellow-500">
+					<Text>email:</Text>
+					<TextInput
+						value={email}
+						onChangeText={(text) => setEmail(text)}
+						className="text-white"
+					/>
+				</View>
+
 				<View className="border border-yellow-500">
 					<Text>password:</Text>
 					<TextInput
@@ -53,30 +64,30 @@ export default function SignIn() {
 				</View>
 
 				<TouchableOpacity
-					onPress={handleSignIn}
+					onPress={handleRegisterAccount}
 					className="border bg-teal-500 py-4 items-center my-4"
 				>
-					<Text>Sign In</Text>
+					<Text>Create Account</Text>
 				</TouchableOpacity>
 			</View>
+
 			<View className="flex-row gap-3">
-				<Text>Don't have an Account</Text>
+				<Text>Have an Account</Text>
 				<TouchableWithoutFeedback>
 					<Text
-						style={styles.btnSignUp}
+						style={styles.btnSignIn}
 						className="text-teal-500"
-						onPress={signUpRedirect}
+						onPress={signInRedirect}
 					>
-						Sign Up
+						Sign In
 					</Text>
 				</TouchableWithoutFeedback>
 			</View>
 		</SafeAreaView>
 	);
 }
-
 const styles = StyleSheet.create({
-	btnSignUp: {
+	btnSignIn: {
 		color: "teal",
 	},
 });

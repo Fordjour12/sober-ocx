@@ -31,13 +31,19 @@ export default function AppLayout() {
 			}}
 		>
 			<Stack.Screen name="(root)" />
-			<Stack.Screen name="auth" />
-			<Stack.Screen
+			{/* <stack.screen name="auth" />
+			<stack.screen
 				name="sign-in"
 				options={{
 					presentation: "modal",
 				}}
 			/>
+			<stack.screen
+				name="register"
+				options={{
+					presentation: "modal",
+				}} 
+			/> */}
 		</Stack>
 	);
 }

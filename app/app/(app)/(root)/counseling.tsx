@@ -1,10 +1,10 @@
 import React from "react";
 import { Text, View } from "react-native";
 
-export default function Two() {
+export default function Counseling() {
 	return (
 		<View>
-			<Text>two</Text>
+			<Text>counselling</Text>
 		</View>
 	);
 }
