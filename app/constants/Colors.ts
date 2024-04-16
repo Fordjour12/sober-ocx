@@ -1,5 +1,7 @@
-const tintColorLight = "#2f95dc";
-const tintColorDark = "#fff";
+const tintColorLight = "#f02e06";
+// "#2f95dc";
+const tintColorDark = "#9e1a0e";
+// "#fff";
 const tabIconDefaultColorLight = "#ff5722";
 const tabIconDefaultColorDark = "c71e07";
 
