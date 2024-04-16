@@ -1,4 +1,4 @@
-import { CustomButton } from "@/components/customCmp/Button";
+import Button from "@/components/Button";
 import { router } from "expo-router";
 import React from "react";
 import { Text, View } from "react-native";
@@ -22,10 +22,10 @@ export default function AuthScreen() {
 			</View>
 
 			<View className="mt-[38rem]">
-				<CustomButton
+				<Button
+					title="Continue with Email"
 					className="bg-purple-500"
 					onPress={signInRedirect}
-					Text={"Continue with Email"}
 				/>
 			</View>
 		</SafeAreaView>

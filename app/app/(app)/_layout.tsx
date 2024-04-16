@@ -14,6 +14,9 @@ export {
 export default function AppLayout() {
 	const [loaded, error] = useFonts({
 		SpaceMono: require("../../assets/fonts/SpaceMono-Regular.ttf"),
+		QuickSandRegular: require("../../assets/fonts/Quicksand-Regular.ttf"),
+		QuickSandSemiBold: require("../../assets/fonts/Quicksand-SemiBold.ttf"),
+		QuickSandBold: require("../../assets/fonts/Quicksand-Bold.ttf"),
 	});
 
 	useEffect(() => {

@@ -83,6 +83,19 @@ export default function RootAppLayout() {
 					},
 				}}
 			/>
+			<Tabs.Screen
+				name="example"
+				options={{
+					href: null,
+				}}
+			/>
+
+			<Tabs.Screen
+				name="example2"
+				options={{
+					href: null,
+				}}
+			/>
 		</Tabs>
 	);
 }

@@ -11,6 +11,13 @@ export default function Profile() {
 					<View className="w-[100] h-[100] rounded-full bg-red-600" />
 					<Text>profile</Text>
 				</View>
+
+				<View className="my-6">
+					<Text>My Sober start date</Text>
+					<Text>01 May 2023</Text>
+					<Text>2.45pm</Text>
+				</View>
+
 				<Text>profile</Text>
 
 				<View>
