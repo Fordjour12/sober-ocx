@@ -20,7 +20,7 @@ export default function Index() {
 					style={styles.btn}
 					title="Continue"
 					onPress={() => {
-						router.push("/sober-data");
+						router.push("/sober-date");
 					}}
 				/>
 				<Button
