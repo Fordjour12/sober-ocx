@@ -13,6 +13,7 @@ const MultiLineTextInput = () => {
 				multiline={true}
 				numberOfLines={10} // Adjust as needed
 				placeholder="Enter your text here..."
+				placeholderTextColor="#ccc"
 				value={text}
 				onChangeText={(newText) => setText(newText)}
 				className="placeholder-gray-900"
@@ -23,7 +24,6 @@ const MultiLineTextInput = () => {
 
 const styles = StyleSheet.create({
 	input: {
-		backgroundColor: "#ff5722",
 		borderWidth: 1,
 		borderColor: "gray",
 		borderRadius: 5,
