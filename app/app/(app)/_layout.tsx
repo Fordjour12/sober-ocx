@@ -43,6 +43,12 @@ export default function AppLayout() {
 					presentation: "modal",
 				}}
 			/>
+			<Stack.Screen
+				name="register"
+				options={{
+					presentation: "modal",
+				}}
+			/>
 		</Stack>
 	);
 }
