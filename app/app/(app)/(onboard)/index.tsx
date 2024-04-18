@@ -24,7 +24,7 @@ export default function Index() {
 					}}
 				/>
 				<Button
-					style={{ marginTop: 16 }}
+					style={[{ marginTop: 16 }, styles.btn2]}
 					title="SignIn"
 					onPress={() => {
 						router.replace("/sign-in");
@@ -47,5 +47,9 @@ const styles = StyleSheet.create({
 		paddingVertical: 16,
 		marginHorizontal: 16,
 		marginTop: 16,
+	},
+	btn2: {
+		backgroundColor: "#ff5722",
+		marginHorizontal: 16,
 	},
 });

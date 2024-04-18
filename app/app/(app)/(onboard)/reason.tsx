@@ -1,6 +1,7 @@
 import Button from "@/components/Button";
 import MultiLineTextInput from "@/components/MultiLineTextInput";
 import { QuickSandBold } from "@/components/StyledText";
+import { router } from "expo-router";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -14,7 +15,13 @@ export default function reason() {
 			<MultiLineTextInput />
 
 			<View className="my-[40%]">
-				<Button style={styles.btn} title="Continue" onPress={() => {}} />
+				<Button
+					style={styles.btn}
+					title="Continue"
+					onPress={() => {
+						router.push("/register");
+					}}
+				/>
 			</View>
 		</SafeAreaView>
 	);
