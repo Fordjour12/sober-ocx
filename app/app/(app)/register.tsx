@@ -23,7 +23,7 @@ export default function register() {
 		>
 			<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 				<>
-					<View className="flex-[0.5]" />
+					<View className="flex-[0.2]" />
 					<View className="flex-[0.7] px-4">
 						<QuickSandBold className="text-5xl py-4">
 							Create New Account
