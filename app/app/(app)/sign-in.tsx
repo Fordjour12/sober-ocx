@@ -1,12 +1,14 @@
-import { Text, View } from "@/components/Themed";
+import Button from "@/components/Button";
+import { QuickSandBold } from "@/components/StyledText";
+import TextInputWithLabel from "@/components/TextInputWithLabel";
+import { View } from "@/components/Themed";
 import { useSession } from "@/context/AuthContext";
 import React, { useState } from "react";
 import {
 	Keyboard,
 	KeyboardAvoidingView,
 	Platform,
-	TextInput,
-	TouchableOpacity,
+	StyleSheet,
 	TouchableWithoutFeedback,
 } from "react-native";
 
@@ -30,48 +32,40 @@ export default function SignIn() {
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === "ios" ? "padding" : "height"}
+			className="flex-1"
 		>
 			<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-				{/* NOTE: use better alternative to fix this margin thing */}
-				<View className="mt-40">
-					<View className="py-4">
-						<Text>Username:</Text>
-						<TextInput
-							id="username"
-							placeholder="username"
-							className="text-gray-300 placeholder:text-gray-400 border border-gray-500 p-3 rounded-xl mt-3"
+				<>
+					<View className="flex-[0.8]" />
+					<View className="flex-[0.7] px-4">
+						<QuickSandBold className="text-5xl py-4">Sign In</QuickSandBold>
+
+						<TextInputWithLabel
+							label="Username"
+							onChangeText={setUsername}
+							placeholder="Username"
 							value={username}
-							onChangeText={(text) => setUsername(text)}
 						/>
-					</View>
-
-					<View className="py-4">
-						<Text>Password:</Text>
-						<TextInput
-							id="password"
-							placeholder="password"
-							className="text-gray-300 placeholder:text-gray-400 border border-gray-500 p-3 rounded-xl mt-3"
-							secureTextEntry
+						<TextInputWithLabel
+							label="Password"
+							onChangeText={setPassword}
+							placeholder="Password"
 							value={password}
-							onChangeText={(text) => setPassword(text)}
 						/>
-					</View>
 
-					<TouchableOpacity
-						onPress={handleSignIn}
-						className="items-center bg-red-950/40 py-3 rounded-xl mt-4"
-					>
-						<Text>Submit</Text>
-					</TouchableOpacity>
-
-					<View className="flex-row py-3">
-						<Text>Don't have Account </Text>
-						<TouchableWithoutFeedback>
-							<Text>Sign Up</Text>
-						</TouchableWithoutFeedback>
+						<Button style={styles.btn} title="SignIn" onPress={() => {}} />
 					</View>
-				</View>
+				</>
 			</TouchableWithoutFeedback>
 		</KeyboardAvoidingView>
 	);
 }
+
+const styles = StyleSheet.create({
+	btn: {
+		backgroundColor: "#f02e06",
+		paddingVertical: 16,
+		marginHorizontal: 10,
+		marginTop: 16,
+	},
+});
