@@ -2,25 +2,60 @@ import Button from "@/components/Button";
 import DateTimePicker from "@/components/DatePicker";
 import { QuickSandBold } from "@/components/StyledText";
 import { router } from "expo-router";
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { getToday } from "react-native-modern-datepicker";
+import axios from "axios";
 
 export default function SoberData() {
+	const Today = getToday();
+
+	const [selectedDate, setSelectedDate] = useState<string>(Today);
+
+
+	const addSoberDate = async (date: string) => {
+		try {
+			const response = await axios.post(
+				"http://192.168.54.242:3000/onboard/reason",
+				{
+					soberDate: date
+				},
+				{
+					headers: {
+						"Content-Type": "application/json"
+					}
+				}
+			)
+
+			if (response.status === 200) {
+				router.push("/reason")
+			}
+		}
+		catch (error) {
+			console.error(error)
+		}
+	}
+
+
 	return (
 		<SafeAreaView>
 			<QuickSandBold className="text-4xl my-[10%] mx-4 tracking-wide">
 				When was your sober start date?
 			</QuickSandBold>
 
-			<DateTimePicker />
+			<DateTimePicker
+				current={Today}
+				selected={selectedDate}
+				onDateChange={(date) => setSelectedDate(date)}
+			/>
+
 			<Button
 				style={styles.btn}
 				title="Next"
-				onPress={() => {
-					router.push("/reason");
-				}}
+				onPress={() => addSoberDate(selectedDate)}
 			/>
+
 		</SafeAreaView>
 	);
 }
