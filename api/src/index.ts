@@ -18,7 +18,7 @@ app.get("/hello/:name", (c) => {
 });
 
 app.route("/auth", auth);
-app.route("/board", boarding);
+app.route("/onboard", boarding);
 
 app.notFound((c) => {
 	return c.json({ message: "Not Found" }, 404);
