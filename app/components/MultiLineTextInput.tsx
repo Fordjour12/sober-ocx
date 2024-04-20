@@ -2,9 +2,13 @@ import { View } from "@/components/Themed";
 import React, { useState } from "react";
 import { StyleSheet, TextInput } from "react-native";
 
-const MultiLineTextInput = () => {
-	const [text, setText] = useState("");
-	const [value, onChangeText] = React.useState("Useless Multiline Placeholder");
+
+type MultiLineTextInputProps = {
+	value: string;
+	onChangeText: (newText: string) => void;
+}
+
+const MultiLineTextInput = (props: MultiLineTextInputProps) => {
 
 	return (
 		<View>
@@ -14,8 +18,8 @@ const MultiLineTextInput = () => {
 				numberOfLines={10} // Adjust as needed
 				placeholder="Enter your text here..."
 				placeholderTextColor="#ccc"
-				value={text}
-				onChangeText={(newText) => setText(newText)}
+				value={props.value}
+				onChangeText={props.onChangeText}
 				className="placeholder-gray-900"
 			/>
 		</View>
