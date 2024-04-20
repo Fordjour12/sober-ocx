@@ -1,5 +1,7 @@
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Client } from "pg";
+import * as onboard from "./schema/onboarding";
+import { onboarding } from "./schema/onboarding";
 import * as user from "./schema/user";
 
 const client = new Client({
@@ -15,7 +17,7 @@ let isConnected = false;
 	}
 })();
 
-const db = drizzle(client, { schema: { ...user } });
+const db = drizzle(client, { schema: { ...user, ...onboarding } });
 
 export default db;
 
@@ -24,5 +26,12 @@ export const createNewUser = async (data: user.InsertUser) => {
 		id: user.user.id,
 		username: user.user.username,
 		email: user.user.email,
+	});
+};
+
+export const onBoardingUser = async (data: onboard.InsertOnBoard) => {
+	return await db.insert(onboard.onboarding).values(data).returning({
+		soberDate: onboard.onboarding.soberDate,
+		reasonForSobriety: onboard.onboarding.reasonForSobriety,
 	});
 };
