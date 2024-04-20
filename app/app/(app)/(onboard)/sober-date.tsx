@@ -2,14 +2,28 @@ import Button from "@/components/Button";
 import DateTimePicker from "@/components/DatePicker";
 import { QuickSandBold } from "@/components/StyledText";
 import { router } from "expo-router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { getToday } from "react-native-modern-datepicker";
 import axios from "axios";
-import { setStoreValue } from "@/hooks/secureStore.hooks";
+import { getStoreValue, setStoreValue } from "@/hooks/secureStore.hooks";
 
 export default function SoberData() {
+
+	useEffect(() => {
+
+		const checkOnboarding = async () => {
+			const onboardingId = await getStoreValue("OnBoardingID")
+			if (onboardingId) {
+				router.push("/reason")
+			}
+		}
+
+		checkOnboarding()
+
+	}, []);
+
 	const Today = getToday();
 
 	const [selectedDate, setSelectedDate] = useState<string>(Today);
