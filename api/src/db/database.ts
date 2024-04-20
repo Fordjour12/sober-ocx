@@ -31,6 +31,7 @@ export const createNewUser = async (data: user.InsertUser) => {
 
 export const onBoardingUser = async (data: onboard.InsertOnBoard) => {
 	return await db.insert(onboard.onboarding).values(data).returning({
+		onboardingId: onboard.onboarding.id,
 		soberDate: onboard.onboarding.soberDate,
 		reasonForSobriety: onboard.onboarding.reasonForSobriety,
 	});
