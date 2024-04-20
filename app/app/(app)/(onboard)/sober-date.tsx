@@ -7,6 +7,7 @@ import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { getToday } from "react-native-modern-datepicker";
 import axios from "axios";
+import { setStoreValue } from "@/hooks/secureStore.hooks";
 
 export default function SoberData() {
 	const Today = getToday();
@@ -27,8 +28,10 @@ export default function SoberData() {
 					}
 				}
 			)
+			console.log(response.data)
 
 			if (response.status === 200) {
+				await setStoreValue("OnBoardingID", JSON.stringify(response.data.message[0].onboardingId))
 				router.push("/reason")
 			}
 		}
