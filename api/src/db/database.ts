@@ -3,6 +3,7 @@ import { Client } from "pg";
 import * as onboard from "./schema/onboarding";
 import { onboarding } from "./schema/onboarding";
 import * as user from "./schema/user";
+import { eq } from "drizzle-orm";
 
 const client = new Client({
 	connectionString: process.env.DATABASE_URL as string,
@@ -36,3 +37,13 @@ export const onBoardingUser = async (data: onboard.InsertOnBoard) => {
 		reasonForSobriety: onboard.onboarding.reasonForSobriety,
 	});
 };
+
+export const updateBoarding = async (data: string, id: string) => {
+	return await db.update(onboard.onboarding).set({
+		reasonForSobriety: data,
+	}).where(eq(onboard.onboarding.id, Number(id))).returning({
+		onboardingId: onboard.onboarding.id,
+	})
+}
+
+
