@@ -29,4 +29,11 @@ boarding.post("/reason", async (c) => {
 	return c.json({ message: data }, { status: 200 });
 });
 
+
+boarding.put("/reason/:id", async (c) => {
+	const id = c.req.param("id")
+
+	return c.json({ message: id }, { status: 200 });
+});
+
 export default boarding;
