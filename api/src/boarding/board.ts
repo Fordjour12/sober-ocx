@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { onBoardingUser } from "../db/database";
+import { onBoardingUser, updateBoarding } from "../db/database";
 
 const boarding = new Hono();
 
@@ -32,8 +32,11 @@ boarding.post("/reason", async (c) => {
 
 boarding.put("/reason/:id", async (c) => {
 	const id = c.req.param("id")
+	const body = await c.req.json();
 
-	return c.json({ message: id }, { status: 200 });
+	const data = await updateBoarding(body.reasonForSobriety, id);
+
+	return c.json({ message: data }, { status: 200 });
 });
 
 export default boarding;
