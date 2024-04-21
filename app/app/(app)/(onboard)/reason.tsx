@@ -3,25 +3,34 @@ import MultiLineTextInput from "@/components/MultiLineTextInput";
 import { QuickSandBold } from "@/components/StyledText";
 import { getStoreValue } from "@/hooks/secureStore.hooks";
 import axios from "axios";
+import { router } from "expo-router";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function reason() {
-	const [reason, setReason] = React.useState("");
+	const [reason, setReason] = React.useState<string>("");
 
 
 
-	const addReason = async () => {
+	const addReason = async (data: string) => {
 		const storeData = await getStoreValue("OnBoardingID")
 		const onboardingId = JSON.parse(String(storeData))
 
 		try {
 			const response = await axios.put(
-				`http://192.168.54.242:3000/onboard/reason/${onboardingId}`)
-
+				`http://192.168.54.242:3000/onboard/reason/${onboardingId}`,
+				{
+					reasonForSobriety: data
+				}
+			)
 			console.log("response Data:", response.data)
 			console.log("response Status:", response.status)
+
+
+			if (response.status === 200) {
+				router.push("/register")
+			}
 
 		} catch (error) {
 			console.error(error)
@@ -40,7 +49,7 @@ export default function reason() {
 				<Button
 					style={styles.btn}
 					title="Continue"
-					onPress={addReason}
+					onPress={() => addReason(reason)}
 				/>
 			</View>
 		</SafeAreaView>
