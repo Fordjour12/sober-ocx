@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { onBoardingUser, updateBoarding } from "../db/database";
+import { onBoardingUser, updateBoarding, updateUserId } from "../db/database";
 
 const boarding = new Hono();
 
@@ -38,5 +38,14 @@ boarding.put("/reason/:id", async (c) => {
 
 	return c.json({ message: data }, { status: 200 });
 });
+
+boarding.put("/user/:id", async (c) => {
+	const id = c.req.param("id")
+	const body = await c.req.json();
+
+	await updateUserId(body.userId, id);
+
+	return c.json({ message: "userId updated" }, { status: 200 });
+})
 
 export default boarding;
