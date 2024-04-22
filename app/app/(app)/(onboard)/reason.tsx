@@ -1,7 +1,7 @@
 import Button from "@/components/Button";
 import MultiLineTextInput from "@/components/MultiLineTextInput";
 import { QuickSandBold } from "@/components/StyledText";
-import { getStoreValue } from "@/hooks/secureStore.hooks";
+import { getStoreValue, setStoreValue } from "@/hooks/secureStore.hooks";
 import axios from "axios";
 import { router } from "expo-router";
 import React from "react";
@@ -19,7 +19,7 @@ export default function reason() {
 
 		try {
 			const response = await axios.put(
-				`http://192.168.54.242:3000/onboard/reason/${onboardingId}`,
+				`http://192.168.104.242:3000/onboard/reason/${onboardingId}`,
 				{
 					reasonForSobriety: data
 				}
@@ -30,6 +30,7 @@ export default function reason() {
 
 			if (response.status === 200) {
 				router.push("/register")
+				setStoreValue("reasonAdded", "true")
 			}
 
 		} catch (error) {
