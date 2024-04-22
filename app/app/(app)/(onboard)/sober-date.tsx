@@ -11,18 +11,6 @@ import { getStoreValue, setStoreValue } from "@/hooks/secureStore.hooks";
 
 export default function SoberData() {
 
-	useEffect(() => {
-
-		const checkOnboarding = async () => {
-			const onboardingId = await getStoreValue("OnBoardingID")
-			if (onboardingId) {
-				router.push("/reason")
-			}
-		}
-
-		checkOnboarding()
-
-	}, []);
 
 	const Today = getToday();
 
