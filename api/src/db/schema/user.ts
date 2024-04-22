@@ -1,5 +1,6 @@
-import { sql } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import { index, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+import { onboarding } from "./onboarding";
 
 export const user = pgTable(
 	"user",
@@ -16,6 +17,10 @@ export const user = pgTable(
 		};
 	},
 );
+
+export const userRelations = relations(user, ({ one }) => ({
+	onboarding: one(onboarding),
+}));
 
 export type SelectUser = typeof user.$inferSelect;
 export type InsertUser = typeof user.$inferInsert;

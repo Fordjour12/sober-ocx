@@ -14,6 +14,11 @@ export {
 export default function AppLayout() {
 	const [loaded, error] = useFonts({
 		SpaceMono: require("../../assets/fonts/SpaceMono-Regular.ttf"),
+		QuickSandRegular: require("../../assets/fonts/Quicksand-Regular.ttf"),
+		QuickSandBold: require("../../assets/fonts/Quicksand-Bold.ttf"),
+		QuickSandMedium: require("../../assets/fonts/Quicksand-Medium.ttf"),
+		QuicksandSemiBold: require("../../assets/fonts/Quicksand-SemiBold.ttf"),
+		// QuickSandVariableFontW: require("../../assets/fonts/Quicksand-VariableFont_wght.ttf"),
 	});
 
 	useEffect(() => {
@@ -30,10 +35,17 @@ export default function AppLayout() {
 				headerShown: false,
 			}}
 		>
+			<Stack.Screen name="(onboard)" />
 			<Stack.Screen name="(root)" />
 			<Stack.Screen name="auth" />
 			<Stack.Screen
 				name="sign-in"
+				options={{
+					presentation: "modal",
+				}}
+			/>
+			<Stack.Screen
+				name="register"
 				options={{
 					presentation: "modal",
 				}}

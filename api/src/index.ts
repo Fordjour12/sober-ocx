@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { logger } from "hono/logger";
 import { auth } from "./authentication/auth";
+import boarding from "./boarding/board";
 
 const app = new Hono();
 
@@ -17,6 +18,7 @@ app.get("/hello/:name", (c) => {
 });
 
 app.route("/auth", auth);
+app.route("/onboard", boarding);
 
 app.notFound((c) => {
 	return c.json({ message: "Not Found" }, 404);
