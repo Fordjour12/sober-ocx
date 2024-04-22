@@ -42,7 +42,7 @@ export default function DateTimePicker(props: DateTimePickerProps) {
 				current={props.current}
 				selected={props.selected}
 				onDateChange={props.onDateChange}
-				mode="datepicker"
+				mode="calendar"
 				minuteInterval={30}
 				style={{ borderRadius: 10 }}
 			/>
