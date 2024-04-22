@@ -46,4 +46,9 @@ export const updateBoarding = async (data: string, id: string) => {
 	})
 }
 
+export const updateUserId = async (user_Id: number, id: string) => {
+	return await db.update(onboard.onboarding).set({
+		userId: user_Id,
+	}).where(eq(onboard.onboarding.id, Number(id)))
+}
 
