@@ -3,6 +3,7 @@ import { QuickSandBold, QuickSandRegular } from "@/components/StyledText";
 import TextInputWithLabel from "@/components/TextInputWithLabel";
 import { getStoreValue } from "@/hooks/secureStore.hooks";
 import axios from "axios";
+import { router } from "expo-router";
 import React, { useState } from "react";
 import {
 	Keyboard,
@@ -29,7 +30,6 @@ export default function register() {
 	const createNewUser = async ({ username, password, email }: RegisterUserProps) => {
 
 		const onboardingId = JSON.parse(String(await getStoreValue("OnBoardingID")))
-
 		try {
 			const response = await axios.post(
 				"http://192.168.104.242:3000/auth/register",
@@ -43,19 +43,26 @@ export default function register() {
 						"Content-Type": "multipart/form-data"
 					}
 				})
-
 			if (response.status === 201) {
-				console.log(response.data)
-				await axios.put(
-					`http://192.168.104.242:3000/${onboardingId}`, {
-					userId: response.data.created[0].id
-				}, {
-					headers: {
-						"Content-Type": "application/json"
+				try {
+					console.log(response.data.created[0].id)
+					const res = await axios.put(
+						`http://192.168.104.242:3000/onboard/user/${onboardingId}`,
+						{
+							userId: response.data.created[0].id
+						},
+						{
+							headers: {
+								"Content-Type": "application/json"
+							}
+						})
+					if (res.status === 200) {
+						router.replace("/")
 					}
-				})
+				} catch (error) {
+					console.error(error)
+				}
 			}
-
 		} catch (error) {
 			console.error(error)
 		}
