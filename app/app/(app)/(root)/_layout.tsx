@@ -27,9 +27,9 @@ export default function RootAppLayout() {
 	// 	console.log("isLoading for if is loading condition ", !isLoading);
 	// }
 
-	if (!session) {
-		return <Redirect href="/auth" />;
-	}
+	//	if (!session) {
+	//		return <Redirect href="/auth" />;
+	//	}
 
 	const colorScheme = useColorScheme();
 
