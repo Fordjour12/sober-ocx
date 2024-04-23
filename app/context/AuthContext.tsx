@@ -95,6 +95,7 @@ export function SessionProvider(props: PropsWithChildren) {
 			);
 
 			const { data } = response;
+			setSession(data.token);
 			return data;
 		} catch (error) {
 			console.error(error);
