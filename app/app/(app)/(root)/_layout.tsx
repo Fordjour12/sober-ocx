@@ -28,6 +28,9 @@ export default function RootAppLayout() {
 	// }
 
 	//	if (!session) {
+	//
+	//	TODO: if there is a session delete all the data from the secure store
+	//
 	//		return <Redirect href="/auth" />;
 	//	}
 
