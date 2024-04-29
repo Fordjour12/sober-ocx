@@ -13,7 +13,7 @@ export async function setStoreValue(key: string, value: string) {
 
 export async function getStoreValue(key: any) {
   try {
-    let result = await SecureStore.getItemAsync(key);
+    const result = await SecureStore.getItemAsync(key);
     if (result) {
       console.log(result);
       return result;
@@ -23,9 +23,15 @@ export async function getStoreValue(key: any) {
   } catch (error) {
     console.log(error);
     console.log("Error getting value");
-
-
   }
-
 }
 
+export async function deleteStoreValue(key: any) {
+  try {
+    await SecureStore.deleteItemAsync(key);
+    console.log("Value deleted successfully");
+  } catch (error) {
+    console.log(error);
+    console.log("Error deleting value");
+  }
+}

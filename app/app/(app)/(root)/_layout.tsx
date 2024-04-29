@@ -27,13 +27,12 @@ export default function RootAppLayout() {
 	// 	console.log("isLoading for if is loading condition ", !isLoading);
 	// }
 
-	// if (!session) {
-	// 	// Only require authentication within the (app) group's layout as users
-	// 	// need to be able to access the (auth) group and sign in again.
-	// 	// On web, static rendering will stop here as the user is not authenticated
-	// 	// in the headless Node process that the pages are rendered in.
-	// 	return <Redirect href="/sign-in" />;
-	// }
+	//	if (!session) {
+	//
+	//	TODO: if there is a session delete all the data from the secure store
+	//
+	//		return <Redirect href="/auth" />;
+	//	}
 
 	const colorScheme = useColorScheme();
 

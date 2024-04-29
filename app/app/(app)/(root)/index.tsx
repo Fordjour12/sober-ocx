@@ -4,6 +4,7 @@ import React from "react";
 
 export default function Index() {
 	const { signOut } = useSession();
+	const day = 23
 
 	return (
 		<View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -15,6 +16,11 @@ export default function Index() {
 			>
 				Sign Out
 			</Text>
+
+			<View>
+				<Text>Hello Ralph,</Text>
+				<Text>you are alcohol free {day} days </Text>
+			</View>
 		</View>
 	);
 }

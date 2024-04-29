@@ -3,7 +3,8 @@ import { QuickSandBold } from "@/components/StyledText";
 import TextInputWithLabel from "@/components/TextInputWithLabel";
 import { View } from "@/components/Themed";
 import { useSession } from "@/context/AuthContext";
-import React, { useState } from "react";
+import { Link, router } from "expo-router";
+import React, { useState, useRef, useEffect } from "react";
 import {
 	Keyboard,
 	KeyboardAvoidingView,
@@ -11,6 +12,7 @@ import {
 	StyleSheet,
 	TouchableWithoutFeedback,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function SignIn() {
 	const { signIn } = useSession();
@@ -24,10 +26,44 @@ export default function SignIn() {
 		try {
 			const res = await signIn({ username, password });
 			console.log(res);
+			router.replace("/");
 		} catch (error) {
 			console.error(error);
 		}
 	};
+
+	const GoBackHandler = () => {
+		router.back()
+		console.log("Can go back")
+	}
+
+	const infoTextPosition = useRef(new Animated.Value(500)).current; // initial position at the bottom
+	const textOpacity = useRef(new Animated.Value(0)).current; // initial opacity: 0 (invisible)
+	const buttonOpacity = useRef(new Animated.Value(0)).current; // initial opacity: 0 (invisible)
+
+
+	useEffect(() => {
+		Animated.sequence([
+			Animated.timing(infoTextPosition, {
+				toValue: 0, // final position at the top
+				duration: 1000, // duration of animation
+				useNativeDriver: true, // use native driver for better performance
+			}),
+			Animated.timing(textOpacity, {
+				toValue: 1, // final opacity: 1 (visible)
+				duration: 500, // duration of animation
+				useNativeDriver: true, // use native driver for better performance
+			}),
+			Animated.timing(buttonOpacity, {
+				toValue: 1, // final opacity: 1 (visible)
+				duration: 500, // duration of animation
+				useNativeDriver: true, // use native driver for better performance
+			}),
+		]).start();
+	}, [textOpacity, infoTextPosition, buttonOpacity]);
+
+
+	const SignInImageBackground = require("../../assets/images/pexels-vlad-chețan-2923156.jpg")
 
 	return (
 		<KeyboardAvoidingView

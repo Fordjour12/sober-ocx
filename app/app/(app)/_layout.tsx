@@ -37,6 +37,7 @@ export default function AppLayout() {
 		>
 			<Stack.Screen name="(onboard)" />
 			<Stack.Screen name="(root)" />
+			<Stack.Screen name="auth" />
 			<Stack.Screen
 				name="sign-in"
 				options={{

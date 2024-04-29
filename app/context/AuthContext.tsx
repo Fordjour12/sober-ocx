@@ -11,13 +11,21 @@ type SignInRequest = {
 	password: string;
 };
 
+type RegisterRequest = {
+	username: string;
+	password: string;
+	email: string;
+};
+
 const AuthContext = createContext<{
 	signIn: ({ username, password }: SignInRequest) => Promise<void>;
+	register: ({ username, password, email }: RegisterRequest) => Promise<void>;
 	signOut: () => void;
 	session?: string | null;
 	isLoading: boolean;
 }>({
 	signIn: () => Promise.resolve(),
+	register: () => Promise.resolve(),
 	signOut: () => null,
 	session: null,
 	isLoading: false,
@@ -43,7 +51,7 @@ export function SessionProvider(props: PropsWithChildren) {
 		try {
 			const response = await axios.post(
 				// NOTE: Add your API URL to .env file
-				"http://192.168.186.242:3000/auth/login",
+				"http://192.104.242:3000/auth/login",
 				{
 					username,
 					password,
@@ -57,6 +65,37 @@ export function SessionProvider(props: PropsWithChildren) {
 
 			const { data } = response;
 
+			// NOTE: Validate the session
+			setSession(data.token);
+			return data;
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	async function register({
+		username,
+		password,
+		email,
+	}: RegisterRequest): Promise<void> {
+		try {
+			const response = await axios.post(
+				// NOTE: Add your API URL to .env file
+				"http://192.104.242:3000/auth/register",
+				{
+					username,
+					password,
+					email,
+				},
+				{
+					headers: {
+						"Content-Type": "multipart/form-data",
+					},
+				},
+			);
+
+			const { data } = response;
+			setSession(data.token);
 			return data;
 		} catch (error) {
 			console.error(error);
@@ -71,6 +110,7 @@ export function SessionProvider(props: PropsWithChildren) {
 		<AuthContext.Provider
 			value={{
 				signIn,
+				register,
 				signOut,
 				session,
 				isLoading,
@@ -80,3 +120,4 @@ export function SessionProvider(props: PropsWithChildren) {
 		</AuthContext.Provider>
 	);
 }
+
