@@ -3,27 +3,22 @@ import { Stack, router } from "expo-router";
 import React from "react";
 
 export default function OnBoardLayout() {
-
 	React.useEffect(() => {
-
 		const checkOnboarding = async () => {
-			const onboardingId = await getStoreValue("OnBoardingID")
-			const reasonAdded = await getStoreValue("reasonAdded")
+			const date = await getStoreValue("Date");
+			const reasonAdded = await getStoreValue("reasonAdded");
 
-			if (onboardingId && reasonAdded) {
-				router.push("/register")
-			} else if (!onboardingId) {
-				router.push("/sober-date")
+			if (date && reasonAdded) {
+				router.replace("/register");
+			} else if (!date) {
+				router.push("/sober-date");
 			} else if (!reasonAdded) {
-				router.push("/reason")
+				router.push("/reason");
 			}
-		}
+		};
 
-		checkOnboarding()
-
+		checkOnboarding();
 	}, []);
-
-
 
 	return (
 		<Stack

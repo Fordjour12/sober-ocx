@@ -3,16 +3,16 @@ import { QuickSandBold } from "@/components/StyledText";
 import TextInputWithLabel from "@/components/TextInputWithLabel";
 import { View } from "@/components/Themed";
 import { useSession } from "@/context/AuthContext";
-import { Link, router } from "expo-router";
-import React, { useState, useRef, useEffect } from "react";
+import { router } from "expo-router";
+import React, { useEffect, useRef, useState } from "react";
 import {
+	Animated,
 	Keyboard,
 	KeyboardAvoidingView,
 	Platform,
 	StyleSheet,
 	TouchableWithoutFeedback,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function SignIn() {
 	const { signIn } = useSession();
@@ -33,14 +33,13 @@ export default function SignIn() {
 	};
 
 	const GoBackHandler = () => {
-		router.back()
-		console.log("Can go back")
-	}
+		router.back();
+		console.log("Can go back");
+	};
 
 	const infoTextPosition = useRef(new Animated.Value(500)).current; // initial position at the bottom
 	const textOpacity = useRef(new Animated.Value(0)).current; // initial opacity: 0 (invisible)
 	const buttonOpacity = useRef(new Animated.Value(0)).current; // initial opacity: 0 (invisible)
-
 
 	useEffect(() => {
 		Animated.sequence([
@@ -62,8 +61,7 @@ export default function SignIn() {
 		]).start();
 	}, [textOpacity, infoTextPosition, buttonOpacity]);
 
-
-	const SignInImageBackground = require("../../assets/images/pexels-vlad-chețan-2923156.jpg")
+	const SignInImageBackground = require("../../assets/images/pexels-vlad-chețan-2923156.jpg");
 
 	return (
 		<KeyboardAvoidingView

@@ -8,7 +8,7 @@ export const unstable_settings = {
 
 export {
 	// Catch any errors thrown by the Layout component.
-	ErrorBoundary,
+	ErrorBoundary
 } from "expo-router";
 
 export default function AppLayout() {
@@ -37,7 +37,6 @@ export default function AppLayout() {
 		>
 			<Stack.Screen name="(onboard)" />
 			<Stack.Screen name="(root)" />
-			<Stack.Screen name="auth" />
 			<Stack.Screen
 				name="sign-in"
 				options={{
