@@ -1,7 +1,11 @@
 import Button from "@/components/Button";
 import { QuickSandBold, QuickSandRegular } from "@/components/StyledText";
 import TextInputWithLabel from "@/components/TextInputWithLabel";
-import { getStoreValue, setStoreValue } from "@/hooks/secureStore.hooks";
+import {
+	deleteStoreValue,
+	getStoreValue,
+	setStoreValue,
+} from "@/hooks/secureStore.hooks";
 import axios from "axios";
 import { router } from "expo-router";
 import React, { useState } from "react";
@@ -73,6 +77,11 @@ export default function register() {
 							},
 						},
 					);
+
+					if (res.status === 200) {
+						await deleteStoreValue("Date");
+						await deleteStoreValue("reasonAdded");
+					}
 
 					console.log(res.data);
 				} catch (error) {
