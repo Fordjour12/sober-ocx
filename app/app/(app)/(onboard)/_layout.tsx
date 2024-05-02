@@ -9,7 +9,8 @@ export default function OnBoardLayout() {
 			const reasonAdded = await getStoreValue("reasonAdded");
 
 			if (date && reasonAdded) {
-				router.replace("/register");
+				// router.replace("/register");
+				router.replace("/(app)/(root)/");
 			} else if (!date) {
 				router.push("/sober-date");
 			} else if (!reasonAdded) {
