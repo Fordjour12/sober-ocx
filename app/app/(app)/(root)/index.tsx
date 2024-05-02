@@ -41,27 +41,32 @@ export default function Index() {
 
 			<View>
 				<View>
-					<QuickSandBold>My Sobriety Date</QuickSandBold>
-					<QuickSandMedium>01 May 3032</QuickSandMedium>
+					<QuickSandBold className="text-2xl">My Sobriety Date</QuickSandBold>
+					<QuickSandMedium className="text-lg">01 May 3032</QuickSandMedium>
 				</View>
 
 				<View>
-					<QuickSandBold>Up Next</QuickSandBold>
+					<QuickSandBold className="text-2xl py-4">Up Next</QuickSandBold>
 
-					<View style={{ backgroundColor: "red" }} className="mx-4 rounded">
-						<QuickSandBold>Daily Notes</QuickSandBold>
-						<QuickSandRegular>
+					<View style={{ backgroundColor: "red" }} className="mx-3 p-3 rounded">
+						<QuickSandBold className="text-3xl">Daily Notes</QuickSandBold>
+						<QuickSandRegular className="text-xl py-4 ">
 							Daily Notes can provide you with insights for staying engaged in
 							your recovery.
 						</QuickSandRegular>
 
-						<View
-							className="flex-row  gap-4"
-							style={{ backgroundColor: "transparent" }}
-						>
-							<PlusCircleIcon color={"#fff"} />
-							<QuickSandMedium>Add some Notes</QuickSandMedium>
-						</View>
+						{/* TODO: Add a link to the notes page */}
+						<Link asChild href={"/(app)/(root)/notes"}>
+							<Pressable>
+								<View
+									className="flex-row  gap-4"
+									style={{ backgroundColor: "transparent" }}
+								>
+									<PlusCircleIcon color={"#fff"} />
+									<QuickSandMedium className="text-lg">Add some Notes</QuickSandMedium>
+								</View>
+							</Pressable>
+						</Link>
 					</View>
 				</View>
 
