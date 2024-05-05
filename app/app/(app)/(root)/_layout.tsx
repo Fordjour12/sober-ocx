@@ -81,6 +81,9 @@ export default function RootAppLayout() {
 					},
 				}}
 			/>
+			<Tabs.Screen name="notes" options={{
+				href: null,
+			}} />
 		</Tabs>
 	);
 }
