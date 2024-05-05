@@ -71,13 +71,13 @@ export default function Index() {
 				</View>
 
 				<View>
-					<QuicksandSemiBold>Lessons</QuicksandSemiBold>
-					<Link asChild href={"/(app)/(root)/counseling"}>
+					<QuicksandSemiBold className="text-2xl py-4">Lessons</QuicksandSemiBold>
+					<Link asChild href={"/(app)/(root)/lessons"}>
 						<Pressable>
-							<View className="flex-row items-center justify-between">
+							<View className="flex-row items-center justify-between mx-3">
 								<View>
-									<QuicksandSemiBold>Getting Sober</QuicksandSemiBold>
-									<QuickSandMedium>Day Zero </QuickSandMedium>
+									<QuicksandSemiBold className="text-xl ">Getting Sober</QuicksandSemiBold>
+									<QuickSandMedium className="py-4">Day Zero </QuickSandMedium>
 								</View>
 								<ChevronRight color={"#fff"} />
 							</View>
@@ -85,9 +85,9 @@ export default function Index() {
 					</Link>
 				</View>
 
-				<View style={{ backgroundColor: "red" }} className="mx-4 rounded">
-					<QuickSandBold>Why I' doing this</QuickSandBold>
-					<QuickSandRegular>
+				<View style={{ backgroundColor: "red" }} className="mx-4 rounded p-3 my-4 ">
+					<QuickSandBold className="text-2xl">Why I' doing this</QuickSandBold>
+					<QuickSandRegular className="text-lg py-4">
 						I am doing this because I want to be a better person and I want best for my family.
 						I want to be a better person and I want best for my family.
 						and to be healthy and happy.
