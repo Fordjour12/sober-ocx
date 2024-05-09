@@ -1,6 +1,7 @@
 import { useClientOnlyValue } from "@/components/useClientOnlyValue";
 import { useColorScheme } from "@/components/useColorScheme";
 import Colors from "@/constants/Colors";
+import { useSession } from "@/context/AuthContext";
 import { Tabs } from "expo-router";
 import {
 	CogIcon,
@@ -15,24 +16,11 @@ import React from "react";
 // SplashScreen.preventAutoHideAsync();
 
 export default function RootAppLayout() {
-	// const { session, isLoading } = useSession();
+	const { session, isLoading } = useSession();
 
-	// console.log("session", session);
-	// console.log("isLoading", isLoading);
-
-	// if (!isLoading) {
-	// 	// You can keep the splash screen open, or render a loading screen like we do here.
-	// 	SplashScreen.hideAsync();
-	// 	// return <Text>Loading.....</Text>;
-	// 	console.log("isLoading for if is loading condition ", !isLoading);
+	// if (!session && isLoading) {
+	// 	return <Redirect href={"/(app)/(root)/"} />;
 	// }
-
-	//	if (!session) {
-	//
-	//	TODO: if there is a session delete all the data from the secure store
-	//
-	//		return <Redirect href="/auth" />;
-	//	}
 
 	const colorScheme = useColorScheme();
 
@@ -81,9 +69,12 @@ export default function RootAppLayout() {
 					},
 				}}
 			/>
-			<Tabs.Screen name="notes" options={{
-				href: null,
-			}} />
+			<Tabs.Screen
+				name="notes"
+				options={{
+					href: null,
+				}}
+			/>
 		</Tabs>
 	);
 }

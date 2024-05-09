@@ -36,7 +36,7 @@ export default function register() {
 	}: RegisterUserProps) => {
 		try {
 			const response = await axios.post(
-				"http://192.168.99.242:8083/api/v1/create-account",
+				"http://192.168.155.242:8080/api/v1/create-account",
 				{
 					username,
 					password,
@@ -48,24 +48,21 @@ export default function register() {
 					},
 				},
 			);
-			if (response.status === 200) {
-				console.log(
-					"userData => ",
-					response.data.message.data.account.username,
-				);
-				await setStoreValue(
-					"username",
-					response.data.message.data.account.username,
-				);
+
+			console.log(response.data.data.username);
+			console.log(response.status);
+
+			if (response.status === 201) {
+				await setStoreValue("username", response.data.data.username);
 
 				try {
 					const date = await getStoreValue("Date");
 					const reasonAdded = await getStoreValue("reasonAdded");
 
 					const res = await axios.post(
-						"http://192.168.99.242:8083/api/v1/onboarding",
+						"http://192.168.155.242:8080/api/v1/onboarding",
 						{
-							userId: response.data.message.data.id,
+							userId: response.data.data.id,
 							sobriety: {
 								reason: reasonAdded,
 								soberDate: date,
@@ -77,17 +74,17 @@ export default function register() {
 							},
 						},
 					);
-
+					console.log(res.data);
+					console.log(res.status);
 					if (res.status === 200) {
 						await deleteStoreValue("Date");
 						await deleteStoreValue("reasonAdded");
-					}
 
-					console.log(res.data);
+						router.replace("/(app)/sign-in");
+					}
 				} catch (error) {
 					console.error(error);
 				}
-				router.replace("/(app)/(root)/");
 			}
 		} catch (error) {
 			console.error(error);

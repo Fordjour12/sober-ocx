@@ -7,7 +7,7 @@ import React, {
 import { useStorageState } from "./useStorageState";
 
 type SignInRequest = {
-	username: string;
+	email: string;
 	password: string;
 };
 
@@ -18,7 +18,7 @@ type RegisterRequest = {
 };
 
 const AuthContext = createContext<{
-	signIn: ({ username, password }: SignInRequest) => Promise<void>;
+	signIn: ({ email, password }: SignInRequest) => Promise<void>;
 	register: ({ username, password, email }: RegisterRequest) => Promise<void>;
 	signOut: () => void;
 	session?: string | null;
@@ -47,26 +47,24 @@ export function useSession() {
 export function SessionProvider(props: PropsWithChildren) {
 	const [[isLoading, session], setSession] = useStorageState("session");
 
-	async function signIn({ username, password }: SignInRequest): Promise<void> {
+	async function signIn({ email, password }: SignInRequest): Promise<void> {
 		try {
 			const response = await axios.post(
-				// NOTE: Add your API URL to .env file
-				"http://192.104.242:3000/auth/login",
+				"http://192.168.155.242:8080/api/v1/login-account",
 				{
-					username,
+					email,
 					password,
 				},
 				{
 					headers: {
-						"Content-Type": "multipart/form-data",
+						"Content-Type": "application/json",
 					},
 				},
 			);
 
 			const { data } = response;
-
-			// NOTE: Validate the session
-			setSession(data.token);
+			console.log(data.data.token);
+			setSession(data.data.token);
 			return data;
 		} catch (error) {
 			console.error(error);
@@ -120,4 +118,3 @@ export function SessionProvider(props: PropsWithChildren) {
 		</AuthContext.Provider>
 	);
 }
-
